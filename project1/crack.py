@@ -7,7 +7,7 @@ gpassword = "zhgnnd"
 gsalt = 'hfT7jp2q'
 
 def to64(v, n):
-    base64 = '/0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    base64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     ret = ''
     for i in range(1, n):
         ret += base64[v & 0x3f]
@@ -41,7 +41,6 @@ def md5crypt():
     
     h = hashlib.md5(res).digest()
     print(h)
-    i= 0
     for i in range(0,999):
         tmp = b""
         if i % 2 != 0:
@@ -57,9 +56,13 @@ def md5crypt():
         else:
             tmp += password
     
-    h = hashlib.md5(tmp).digest()
+    abc = hashlib.md5(tmp).digest()
 
-    print(h)
+    print(type(abc))
+
+    return to64((h[0] << 16) | (h[6] << 8) | (h[12]), 4) +to64((h[1] << 16) | (h[7] << 8) | (h[13]), 4) + to64((h[2] << 16) | (h[8] << 8) | (h[14]), 4) +to64((h[3] << 16) | (h[9] << 8) | (h[15]), 4) + to64((h[4] << 16) | (h[10] << 8) | (h[5]), 4) +to64(h[11], 2)
+
+    
 
 
 
@@ -84,6 +87,6 @@ def getPermutations():
 
 if __name__ == "__main__":
     #main function
-    passProvided = input("Input password\n")
-    saltProvided = input("Input salt\n")
+    # passProvided = input("Input password\n")
+    # saltProvided = input("Input salt\n")
     md5crypt()
