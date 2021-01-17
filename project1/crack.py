@@ -59,17 +59,21 @@ if __name__ == "__main__":
     salt = '4fTgjp6q'
     hashed = 'QhqtcnMK1gPnk0uN3CsyL/'
     tested = 0
+    total = 0
     start = process_time()
 
     possible = string.ascii_lowercase[::-1]
     for citer in product(possible,repeat = 6):
         if hashed == md5crypt(''.join(citer), salt):
             print('The password is: ' + ''.join(citer))
+            print('Finished at: ' + str(total) + ' seconds.')
             quit()
         else:
             current = process_time()
             if (current - start) > 1:
-                print(str(tested) + ' tested at ' + str(current) + ' seconds')
+                print(str(tested) + ' tested at ' + str(current) + ' seconds.')
                 start = process_time()
+                tested = 0
             tested += 1
+            total += 1
     print('No matching hash found')
