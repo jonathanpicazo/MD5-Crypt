@@ -62,7 +62,7 @@ if __name__ == "__main__":
     total = 0
     start = process_time()
 
-    possible = string.ascii_lowercase[::-1]
+    possible = string.ascii_lowercase
     for citer in product(possible,repeat = 6):
         if hashed == md5crypt(''.join(citer), salt):
             print('The password is: ' + ''.join(citer))
