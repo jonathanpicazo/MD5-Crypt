@@ -66,7 +66,7 @@ if __name__ == "__main__":
     for citer in product(possible,repeat = 6):
         if hashed == md5crypt(''.join(citer), salt):
             print('The password is: ' + ''.join(citer))
-            print('Finished at: ' + str(total) + ' seconds.')
+            print('Finished with a total of ' + str(total) + ' iterations.')
             quit()
         else:
             current = process_time()
